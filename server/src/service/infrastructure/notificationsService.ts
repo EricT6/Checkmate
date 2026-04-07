@@ -156,21 +156,22 @@ export class NotificationsService implements INotificationsService {
 		const notification = await this.notificationsRepository.findById(notificationId, monitor.teamId);
 		const settings = this.settingsService.getSettings();
 		const clientHost = settings.clientHost || "Host not defined";
-		const message = this.notificationMessageBuilder.buildMessage(
-			monitor,
-			monitorStatusResponse,
-			{ shouldCreateIncident: false, shouldResolveIncident: false, shouldSendNotification: true, incidentReason: null, notificationReason: "escalation" },
-			clientHost,
-			{ notificationReason: "escalation", escalationMinutes }
-		);
-
-		return await this.send(notification, monitor, monitorStatusResponse, {
+		const escalationDecision: MonitorActionDecision = {
 			shouldCreateIncident: false,
 			shouldResolveIncident: false,
 			shouldSendNotification: true,
 			incidentReason: null,
-			notificationReason: "escalation",
-		}, message);
+			notificationReason: null,
+		};
+		const message = this.notificationMessageBuilder.buildMessage(
+			monitor,
+			monitorStatusResponse,
+			escalationDecision,
+			clientHost,
+			{ notificationReason: "escalation", escalationMinutes }
+		);
+
+		return await this.send(notification, monitor, monitorStatusResponse, escalationDecision, message);
 	};
 
 	sendTestNotification = async (notification: Partial<Notification>) => {
