@@ -16,7 +16,7 @@ const createHelper = (overrides?: Partial<ConstructorParameters<typeof SuperSimp
 		networkService: { requestStatus: jest.fn() },
 		statusService: statusServiceMock,
 		notificationsService: { handleNotifications: jest.fn().mockResolvedValue(undefined) },
-				sendEscalationNotification: jest.fn().mockResolvedValue(true),
+		sendEscalationNotification: jest.fn().mockResolvedValue(true),
 		checkService: { buildCheck: jest.fn().mockResolvedValue({}) },
 		buffer: { addToBuffer: jest.fn() },
 		incidentService: { handleIncident: jest.fn().mockResolvedValue(undefined) },
@@ -80,12 +80,7 @@ describe("SuperSimpleQueueHelper", () => {
 			jest.spyOn(helper, "isInMaintenanceWindow").mockResolvedValue(false);
 			const job = helper.getMonitorJob();
 			await job(monitor);
-			expect(helper["notificationsService"].sendEscalationNotification).toHaveBeenCalledWith(
-				monitor,
-				expect.any(Object),
-				"n1",
-				5
-			);
+			expect(helper["notificationsService"].sendEscalationNotification).toHaveBeenCalledWith(monitor, expect.any(Object), "n1", 5);
 			expect(helper["incidentsRepository"].updateById).toHaveBeenCalledWith(
 				"i1",
 				"team",

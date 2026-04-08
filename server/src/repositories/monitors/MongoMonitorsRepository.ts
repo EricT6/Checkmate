@@ -376,9 +376,9 @@ class MongoMonitorsRepository implements IMonitorsRepository {
 			notifications: notificationIds,
 			escalation: doc.escalation
 				? {
-					afterMinutes: doc.escalation.afterMinutes,
-					notificationId: doc.escalation.notificationId,
-				}
+						afterMinutes: doc.escalation.afterMinutes,
+						notificationId: doc.escalation.notificationId,
+					}
 				: undefined,
 			secret: doc.secret ?? undefined,
 			cpuAlertThreshold: doc.cpuAlertThreshold,
@@ -441,9 +441,9 @@ class MongoMonitorsRepository implements IMonitorsRepository {
 			notifications: notificationIds,
 			escalation: doc.escalation
 				? {
-					afterMinutes: doc.escalation.afterMinutes,
-					notificationId: doc.escalation.notificationId,
-				}
+						afterMinutes: doc.escalation.afterMinutes,
+						notificationId: doc.escalation.notificationId,
+					}
 				: undefined,
 			secret: doc.secret ?? undefined,
 			cpuAlertThreshold: doc.cpuAlertThreshold,

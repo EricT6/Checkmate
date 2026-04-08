@@ -752,7 +752,9 @@ const CreateMonitorPage = () => {
 																)
 															);
 														}}
-														aria-label="Remove notification"
+														aria-label={t(
+															"pages.createMonitor.form.notifications.removeAriaLabel"
+														)}
 													>
 														<Trash2 size={16} />
 													</IconButton>
@@ -789,7 +791,9 @@ const CreateMonitorPage = () => {
 									>
 										<TextField
 											type="number"
-											fieldLabel={t("pages.createMonitor.form.escalations.option.afterMinutes.label")}
+											fieldLabel={t(
+												"pages.createMonitor.form.escalations.option.afterMinutes.label"
+											)}
 											value={escalation.afterMinutes}
 											onWheel={(e) => {
 												e.currentTarget.blur();
@@ -808,14 +812,19 @@ const CreateMonitorPage = () => {
 											options={notificationOptions}
 											value={selectedEscalationChannel ?? null}
 											getOptionLabel={(option) => option.name}
-											onChange={(_: unknown, newValue: (typeof notificationOptions)[number] | null) => {
+											onChange={(
+												_: unknown,
+												newValue: (typeof notificationOptions)[number] | null
+											) => {
 												field.onChange({
 													...escalation,
 													notificationId: newValue?.id ?? "",
 												});
 											}}
 											isOptionEqualToValue={(option, value) => option.id === value.id}
-											fieldLabel={t("pages.createMonitor.form.escalations.option.channels.label")}
+											fieldLabel={t(
+												"pages.createMonitor.form.escalations.option.channels.label"
+											)}
 										/>
 									</Stack>
 									{selectedEscalationChannel && (
@@ -839,7 +848,9 @@ const CreateMonitorPage = () => {
 															notificationId: "",
 														});
 													}}
-													aria-label="Remove escalation notification"
+													aria-label={t(
+														"pages.createMonitor.form.escalations.removeAriaLabel"
+													)}
 												>
 													<Trash2 size={16} />
 												</IconButton>
@@ -1078,7 +1089,9 @@ const CreateMonitorPage = () => {
 																				)
 																			);
 																		}}
-																		aria-label="Remove location"
+																		aria-label={t(
+																			"pages.createMonitor.form.geoChecks.option.locations.removeAriaLabel"
+																		)}
 																	>
 																		<Trash2 size={16} />
 																	</IconButton>

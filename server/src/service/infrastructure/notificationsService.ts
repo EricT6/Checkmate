@@ -159,18 +159,30 @@ export class NotificationsService implements INotificationsService {
 		const message = this.notificationMessageBuilder.buildMessage(
 			monitor,
 			monitorStatusResponse,
-			{ shouldCreateIncident: false, shouldResolveIncident: false, shouldSendNotification: true, incidentReason: null, notificationReason: "escalation" },
+			{
+				shouldCreateIncident: false,
+				shouldResolveIncident: false,
+				shouldSendNotification: true,
+				incidentReason: null,
+				notificationReason: "escalation",
+			},
 			clientHost,
 			{ notificationReason: "escalation", escalationMinutes }
 		);
 
-		return await this.send(notification, monitor, monitorStatusResponse, {
-			shouldCreateIncident: false,
-			shouldResolveIncident: false,
-			shouldSendNotification: true,
-			incidentReason: null,
-			notificationReason: "escalation",
-		}, message);
+		return await this.send(
+			notification,
+			monitor,
+			monitorStatusResponse,
+			{
+				shouldCreateIncident: false,
+				shouldResolveIncident: false,
+				shouldSendNotification: true,
+				incidentReason: null,
+				notificationReason: "escalation",
+			},
+			message
+		);
 	};
 
 	sendTestNotification = async (notification: Partial<Notification>) => {
